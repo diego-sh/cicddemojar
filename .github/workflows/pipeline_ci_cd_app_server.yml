@@ -1,8 +1,8 @@
 name: Build and deploy JAR app to Azure Web App
 
-env:
-  AZURE_WEBAPP_NAME: MY_WEBAPP_NAME   # set this to your application's name
-  JAVA_VERSION: '21'                  # set this to the Java version to use
+#env:
+#  AZURE_WEBAPP_NAME: MY_WEBAPP_NAME   # set this to your application's name
+#  JAVA_VERSION: '21'                  # set this to the Java version to use
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ env.JAVA_VERSION }}
+          java-version: '21'
           cache: 'maven'
 
       - name: Build with Maven
@@ -48,6 +48,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          app-name: 'demojar'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '*.jar'
