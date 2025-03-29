@@ -28,12 +28,14 @@ jobs:
 
 #Scan code with sonarqube
       - uses: actions/checkout@master
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
       - name: SonarQube Scan
         uses: kitabisa/sonarqube-action@v1.2.0
         with:         
           host: ${{ secrets.SONAR_HOST_URL }}
           login: ${{ secrets.SONAR_TOKEN }}
-          #run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
