@@ -32,7 +32,6 @@ jobs:
         with:         
           host: ${{ secrets.SONAR_HOST_URL }}
           login: ${{ secrets.SONAR_TOKEN }}
-          projectBaseDir: "src/"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
