@@ -33,10 +33,7 @@ jobs:
         with:         
           host: ${{ secrets.SONAR_HOST_URL }}
           login: ${{ secrets.SONAR_TOKEN }}
-          args: >
-            -Dsonar.sources=src/main/java/
-            -Dsonar.test.exclusions=tests/**
-            -Dsonar.java.binaries=/target/classes
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
