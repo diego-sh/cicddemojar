@@ -31,8 +31,7 @@ jobs:
       - name: SonarQube Scan
         uses: kitabisa/sonarqube-action@v1.2.0
         with:
-          #projectBaseDir: "src"
-          #projectKey: "cicddemojar"
+          projectBaseDir: "src/"          
           host: ${{ secrets.SONAR_HOST_URL }}
           login: ${{ secrets.SONAR_TOKEN }}
 
