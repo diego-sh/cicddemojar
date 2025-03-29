@@ -36,7 +36,7 @@ jobs:
           args: >
             -Dsonar.sources=src/main/java/
             -Dsonar.test.exclusions=tests/**
-            -Dsonar.verbose=true
+            -Dsonar.java.binaries=**/target/classes
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
