@@ -36,7 +36,7 @@ jobs:
           args: >
             -Dsonar.projectKey=demojar
             -Dsonar.test.exclusions=tests/**
-            -Dsonar.java.binaries= **/*.java
+            -Dsonar.exclusions=**/*.java
             -Dsonar.verbose=true
             
 
