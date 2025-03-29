@@ -28,10 +28,14 @@ jobs:
 
 #Scan code with sonarqube
       - name: SonarQube Scan
-        uses: kitabisa/sonarqube-action@master
-        with:         
-          host: ${{ secrets.SONAR_HOST_URL }}
-          login: ${{ secrets.SONAR_TOKEN }}
+        uses: SonarSource/sonarqube-scan-action@v4.1.0 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        #uses: kitabisa/sonarqube-action@master
+        #with:         
+        #  host: ${{ secrets.SONAR_HOST_URL }}
+        #  login: ${{ secrets.SONAR_TOKEN }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
