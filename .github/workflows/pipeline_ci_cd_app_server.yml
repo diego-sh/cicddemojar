@@ -70,7 +70,6 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          allow-no-subscriptions: true
 
       - name: Deploy to Azure VM
         uses: azure/cli@v2
