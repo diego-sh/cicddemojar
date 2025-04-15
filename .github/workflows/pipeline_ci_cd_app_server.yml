@@ -66,13 +66,10 @@ jobs:
       #    app-name: 'demojar'
       #    publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
       #    package: '*.jar'
-      
-      - name: Set Azure subscription
-        run: az account set --subscription "2e022a14-0d88-4b5d-8e02-109ee8511fde"
 
       - name: Deploy to Azure VM
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --allow-no-subscriptions
             az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE-PRB --command-id RunShellScript --scripts "cd /home/administrador/pruebas &&  git pull "
