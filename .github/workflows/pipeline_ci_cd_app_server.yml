@@ -59,10 +59,17 @@ jobs:
         with:
           name: java-app
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+      #- name: Deploy to Azure Web App
+      #  id: deploy-to-webapp
+      #  uses: azure/webapps-deploy@v3
+      #  with:
+      #    app-name: 'demojar'
+      #    publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+      #    package: '*.jar'
+      
+      - name: Deploy to Azure VM
+        uses: azure/CLI@v1
         with:
-          app-name: 'demojar'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '*.jar'
+          inlineScript: |
+            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+            az vm run-command invoke --resource-group TEST --name SRV-UBUNTU --command-id RunShellScript --scripts "cd /pruebas &&  git pull "
