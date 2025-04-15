@@ -74,5 +74,6 @@ jobs:
       - name: Deploy to Azure VM
         uses: azure/cli@v2
         with:
-          inlineScript: |
-            az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE --command-id RunShellScript --scripts "cd /dev/shm &&  git pull "
+          inlineScript: |          
+            az vm run-command invoke --resource-group myResourceGroup --name myVM --command-id RunShellScript --scripts "
+            cd /dev/shm scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./artifact/java-app.jar
