@@ -76,4 +76,4 @@ jobs:
         with:
           inlineScript: |          
             az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE --command-id RunShellScript --scripts "
-            cd /dev/shm scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./artifact/java-app.jar
+            cd /dev/shm scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./artifact/java-app.jar"
