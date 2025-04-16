@@ -45,6 +45,11 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
+      
+      
+      - name: Capture artifact URL
+        run: echo "artifact_url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" >> $GITHUB_ENV
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -76,4 +81,4 @@ jobs:
         with:
           inlineScript: |          
             az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE --command-id RunShellScript --scripts "
-            cd /dev/shm scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./artifact/java-app.jar"
+            cd /dev/shm && wget ${{ env.artifact_url }} "
