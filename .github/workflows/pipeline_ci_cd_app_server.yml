@@ -86,4 +86,4 @@ jobs:
         with:
           inlineScript: |          
             az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE-PRB --command-id RunShellScript --scripts "
-            sh descarga-artefacto.sh ${{ env.ARTIFACT_ID }}"
+            sh test/descarga-artefacto.sh ${{ env.ARTIFACT_ID }}"
