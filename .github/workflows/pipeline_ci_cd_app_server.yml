@@ -85,4 +85,4 @@ jobs:
         uses: azure/cli@v2
         with:
           inlineScript: |          
-            az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE-PRB --command-id RunShellScript --scripts " cd /home/administrador/test && sh descarga-artefacto.sh 2954354725"
+            az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE-PRB --command-id RunShellScript --scripts " cd /home/administrador/test && sh descarga-artefacto.sh ${{ env.ARTIFACT_ID }}"
