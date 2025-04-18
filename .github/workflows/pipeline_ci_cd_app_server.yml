@@ -46,13 +46,13 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
-      - name: Get artifact ID
-        run: |
-          ARTIFACT_ID=$(curl -H "Accept: application/vnd.github+json" \
-          -H "Authorization: token ${{ secrets.TOKEN_ACCESS_GITHUB }}" \
-          https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts | jq -r '.artifacts[0].id')
-          
-          echo "ARTIFACT_ID=$ARTIFACT_ID" >> $GITHUB_ENV
+     # - name: Get artifact ID
+     #   run: |
+     #     ARTIFACT_ID=$(curl -H "Accept: application/vnd.github+json" \
+     #     -H "Authorization: token ${{ secrets.TOKEN_ACCESS_GITHUB }}" \
+     #     https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts | jq -r '.artifacts[0].id')
+     #     
+     #     echo "ARTIFACT_ID=$ARTIFACT_ID" >> $GITHUB_ENV
 
 
   deploy:
@@ -89,4 +89,4 @@ jobs:
         uses: azure/cli@v2
         with:
           inlineScript: |          
-            az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE-PRB --command-id RunShellScript --scripts " cd /home/administrador/test && sh descarga-artefacto.sh ${{ env.ARTIFACT_ID }}"
+            az vm run-command invoke --resource-group FE-PRODUCCION --name SRV-FE-PRB --command-id RunShellScript --scripts " cd /home/administrador/test && sh descarga-artefacto.sh ${{ github.run_id }}"
