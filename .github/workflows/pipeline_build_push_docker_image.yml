@@ -26,6 +26,5 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
-        file: ./Dockerfile
         push: true
         tags: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/demojar:latest
