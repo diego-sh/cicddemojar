@@ -21,11 +21,14 @@ jobs:
         registry: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io
         username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+    - run: |
+        docker build . -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/demojar:latest
+        docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/demojar:latest
 
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: ./app
-        file: ./Dockerfile
-        push: true
-        tags: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/demojar:latest
+    #- name: Build and push Docker image
+    #  uses: docker/build-push-action@v2
+    #  with:
+    #    context: ./app
+    #    file: ./Dockerfile
+    #    push: true
+    #    tags: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/demojar:latest
